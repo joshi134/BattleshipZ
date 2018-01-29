@@ -2,6 +2,7 @@
 Simple Battleship Game for Wara School Project
 
 =========
+
 ToDo:
 - Gewinner Textbox
 - Wenn zu groß neu setzen 
