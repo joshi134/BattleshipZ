@@ -1,0 +1,59 @@
+[Files]
+File0=DatenSchiffeversenken.class
+File1=Feld$1.class
+File2=Feld.class
+
+[Box:  - DatenSchiffeversenken]
+X=20
+Y=40
+MinVis=0
+ShowParameter=4
+SortOrder=0
+ShowIcons=0
+FontSize=10
+FontName=MS Sans Serif
+
+[Box:  - Feld]
+X=734
+Y=130
+MinVis=0
+ShowParameter=4
+SortOrder=0
+ShowIcons=0
+FontSize=10
+FontName=MS Sans Serif
+
+[Box:  - Feld$1]
+X=742
+Y=119
+MinVis=0
+ShowParameter=4
+SortOrder=0
+ShowIcons=0
+FontSize=10
+FontName=MS Sans Serif
+
+[Diagram]
+OffsetX=0
+OffsetY=0
+Visibility=0
+ShowParameter=4
+SortOrder=0
+ShowIcons=0
+ShowConnections=0
+Fontname=MS Sans Serif
+Fontsize=10
+ShowObjectDiagram=0
+
+[Connections]
+V0=Feld$1#Feld#AssociationDirected####0#0#0
+
+[Interactive]
+I0=
+
+[Window]
+Left=75
+Top=75
+Width=1691
+Height=488
+

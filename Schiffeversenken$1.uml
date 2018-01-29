@@ -1,0 +1,96 @@
+[Files]
+File0=DatenSchiffeversenken.class
+File1=Schiffeversenken$1.class
+File2=Schiffeversenken$2.class
+File3=Schiffeversenken.class
+File4=Spieler.class
+File5=SteuerungSchiffeversenken.class
+
+[Box:  - DatenSchiffeversenken]
+X=89
+Y=683
+MinVis=0
+ShowParameter=4
+SortOrder=0
+ShowIcons=0
+FontSize=10
+FontName=MS Sans Serif
+
+[Box:  - Schiffeversenken]
+X=204
+Y=169
+MinVis=0
+ShowParameter=4
+SortOrder=0
+ShowIcons=0
+FontSize=10
+FontName=MS Sans Serif
+
+[Box:  - Schiffeversenken$1]
+X=198
+Y=40
+MinVis=0
+ShowParameter=4
+SortOrder=0
+ShowIcons=0
+FontSize=10
+FontName=MS Sans Serif
+
+[Box:  - Schiffeversenken$2]
+X=739
+Y=138
+MinVis=0
+ShowParameter=4
+SortOrder=0
+ShowIcons=0
+FontSize=10
+FontName=MS Sans Serif
+
+[Box:  - Spieler]
+X=357
+Y=442
+MinVis=0
+ShowParameter=4
+SortOrder=0
+ShowIcons=0
+FontSize=10
+FontName=MS Sans Serif
+
+[Box:  - SteuerungSchiffeversenken]
+X=20
+Y=442
+MinVis=0
+ShowParameter=4
+SortOrder=0
+ShowIcons=0
+FontSize=10
+FontName=MS Sans Serif
+
+[Diagram]
+OffsetX=0
+OffsetY=0
+Visibility=0
+ShowParameter=4
+SortOrder=0
+ShowIcons=0
+ShowConnections=0
+Fontname=MS Sans Serif
+Fontsize=10
+ShowObjectDiagram=0
+
+[Connections]
+V0=Schiffeversenken#SteuerungSchiffeversenken#AssociationBidirectional####0#0#0
+V1=Schiffeversenken#Spieler#AssociationBidirectional####0#0#0
+V2=Schiffeversenken$1#Schiffeversenken#AssociationDirected####0#0#0
+V3=Schiffeversenken$2#Schiffeversenken#AssociationDirected####0#0#0
+V4=SteuerungSchiffeversenken#DatenSchiffeversenken#AssociationDirected####0#0#0
+
+[Interactive]
+I0=
+
+[Window]
+Left=225
+Top=225
+Width=1691
+Height=488
+
