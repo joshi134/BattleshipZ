@@ -10,6 +10,7 @@ Primär:
 
 Sekundär:
 - Serverfunktionalität (HowTo)
+- Website
 
 Tertiär:
 - GUI Optimierung & Verschönerung
