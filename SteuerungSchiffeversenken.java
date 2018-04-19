@@ -12,11 +12,13 @@ public class SteuerungSchiffeversenken{
     return daten;
   }
   
+  
   public void schliessen(){
-    int result = JOptionPane.showConfirmDialog(null, "Soll das Programm geschlossen werde?", "Schlieﬂen", JOptionPane.YES_NO_CANCEL_OPTION);
+    int result = JOptionPane.showConfirmDialog(null, "Soll das Programm geschlossen werde?", "Schlieﬂen", JOptionPane.YES_NO_OPTION);
     if (result == JOptionPane.YES_OPTION) {
       System.exit(0)  ;
-    } else if (result == JOptionPane.NO_OPTION) {
+      this.gui.close();
+    } else  {
       
     } 
   }

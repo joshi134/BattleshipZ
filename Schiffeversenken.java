@@ -13,23 +13,27 @@ import javax.swing.event.*;
 
 public class Schiffeversenken extends JFrame {
   // Anfang Attribute
+  final private String authoren="© Joshua & Mario";
   private SteuerungSchiffeversenken strg;
   private JLabel ueberschrift = new JLabel();
   private JButton pvsp = new JButton();
   private JButton ende = new JButton();
   private Spieler playerOne = new Spieler("Player 1",this);
   private Spieler playerTwo = new Spieler("Player 2",this);
+  private KIGui ki= new KIGui("KI",this);
   private int zug =1 ;
   private JButton pvsc = new JButton();
   private JButton onlinePvsP = new JButton();
+  private boolean gegenKi=false;
+  private JLabel author = new JLabel();
   // Ende Attribute
   
   public Schiffeversenken(String title) { 
     // Frame-Initialisierung
     super(title);
-    setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+    setDefaultCloseOperation(this.DO_NOTHING_ON_CLOSE);
     int frameWidth = 239; 
-    int frameHeight = 283;
+    int frameHeight = 296;
     setSize(frameWidth, frameHeight);
     Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
     int x = (d.width - getSize().width) / 2;
@@ -84,12 +88,19 @@ public class Schiffeversenken extends JFrame {
       }
     });
     cp.add(onlinePvsP);
+    author.setBounds(120, 248, 109, 19);
+    author.setText(this.authoren);
+    cp.add(author);
     // Ende Komponenten
     strg = new SteuerungSchiffeversenken(this);
     setVisible(true);
   } // end of public Schiffeversenken
   
   // Anfang Methoden
+  public void close(){
+    setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+  }
+  
   public void pvsp_ActionPerformed(ActionEvent evt) {
     playerOne = new Spieler("Player 1",this);
     playerTwo = new Spieler("Player 2",this);
@@ -110,16 +121,34 @@ public class Schiffeversenken extends JFrame {
     this.zug++;
   }
   
+  public void welchsleKI(){
+    if (this.zug%2==0) {
+      this.playerOne.zeigen(false);
+      this.ki.zeigen(true);
+    } else {
+      this.playerOne.zeigen(true);
+      this.ki.zeigen(false);
+    } // end of if-else
+    this.zug++;
+  }
+  
   public void ende_ActionPerformed(ActionEvent evt) {
-    
+    this.strg.schliessen();  
   } // end of ende_ActionPerformed
   
   public void pvsc_ActionPerformed(ActionEvent evt) {
-    // TODO hier Quelltext einfügen
+    this.gegenKi=true;
+    playerOne = new Spieler("Player 1",this);
+    this.playerTwo= new Spieler("leer",this);
+    ki= new KIGui("KI",this);
+    this.setVisible(true);
+    this.playerOne.setDaten(this.strg.getDaten());
+    ki.setDaten(this.strg.getDaten());
+    this.welchsleKI();
   } // end of pvsc_ActionPerformed
   
   public void onlinePvsP_ActionPerformed(ActionEvent evt) {
-    // TODO hier Quelltext einfügen
+    
   } // end of onlinePvsP_ActionPerformed
   
   // Ende Methoden
@@ -127,5 +156,10 @@ public class Schiffeversenken extends JFrame {
   public static void main(String[] args) {
     new Schiffeversenken("Schiffeversenken");
   } // end of main
+  
+  public boolean getGegenKi(){
+    return this.gegenKi;
+  }
+  
   
 } // end of class Schiffeversenken

@@ -10,6 +10,7 @@ public class Feld {
   private int positionX;
   private int positionY;
   private SteuerungSpieler strg;
+  private KI ki ;
   
   
   public Feld(String text,int x,int y, int l, int h,int xP, int yP,SteuerungSpieler stg,String n){
@@ -28,11 +29,33 @@ public class Feld {
     strg=stg;
   }
   
-  private void feld_Action(ActionEvent evt){
+  public Feld(String text,int x,int y, int l, int h,int xP, int yP,KI k,String n){
+    feld.addActionListener(new ActionListener() { 
+      public void actionPerformed(ActionEvent evt) { 
+        feld_ActionKi(evt);
+      }
+    });
+    name= n; 
+    feld.setBounds(x,y,l,h);
+    feld.setText(text);
+    feld.setMargin(new Insets(2, 2, 2, 2));
+    positionX=xP;
+    positionY=yP;
+    this.setWhite();
+    ki=k;
+  }
+  
+  public void feld_Action(ActionEvent evt){
     int wert = strg.gedrueckt(this.getX() ,this.getY(),this.getName(), this.gibText() );
-    boolean start= this.strg.getGo();
+    // boolean start= this.strg.getGo();
     this.setBackgroundC(wert);
   } 
+  
+  public void feld_ActionKi(ActionEvent evt){
+    //int wert = ki.gedrueckt(this.getName(), this.gibText() );
+    //boolean start= this.ki.getGo();
+    //this.setBackgroundC(wert);
+  }
   
   public void setText(String text){
     feld.setText(text);

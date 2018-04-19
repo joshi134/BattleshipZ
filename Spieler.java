@@ -13,6 +13,7 @@ import javax.swing.event.*;
 
 public class Spieler extends JFrame {
   // Anfang Attribute
+  final private String authoren="© Joshua & Mario";
   private JLabel nameFeld = new JLabel();
   private JTextField name = new JTextField();
   private Feld[][] spielfeld = new Feld[11][11];
@@ -33,17 +34,17 @@ public class Spieler extends JFrame {
   private JButton schiff21 = new JButton(s2er);
   private JButton schiff22 = new JButton(s2er);
   private JButton reset = new JButton();
-  private boolean visibilitySchiff21=true;
-  private boolean visibilitySchiff22=true;
+  private boolean[] visivilitySchiffe ={true,true,true,true,true};     // schiff5; schiff4; schiff3; schiff21; schiff22
+  private JLabel author = new JLabel();
   // Ende Attribute
   
   public Spieler(String title, Schiffeversenken m) { 
     // Frame-Initialisierung
     super(title); 
     titel=title;
-    setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+    setDefaultCloseOperation(this.DO_NOTHING_ON_CLOSE); 
     int frameWidth = 382; 
-    int frameHeight = 308;
+    int frameHeight = 315;
     setSize(frameWidth, frameHeight);
     Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
     int x = (d.width - getSize().width) / 2;
@@ -55,7 +56,7 @@ public class Spieler extends JFrame {
     // Anfang Komponenten
     this.addWindowListener(new WindowAdapter() {            // schlieﬂen 
       public void windowClosing(WindowEvent e) { 
-      strgSP.schlieﬂen(); 
+        strgSP.schlieﬂen(); 
       } 
     });
     
@@ -73,8 +74,8 @@ public class Spieler extends JFrame {
       }
     });
     cp.add(wieter);
-    zeig.setBounds(24, 256, 129, 17);
-    zeig.setText("Verdecken/Zeigen");
+    zeig.setBounds(24, 256, 30, 17);
+    zeig.setText("GO!");
     zeig.setMargin(new Insets(2, 2, 2, 2));
     zeig.addActionListener(new ActionListener() { 
       public void actionPerformed(ActionEvent evt) { 
@@ -147,6 +148,9 @@ public class Spieler extends JFrame {
       }
     });
     cp.add(reset);
+    author.setBounds(264, 272, 107, 19);
+    author.setText(this.authoren);
+    cp.add(author);
     // Ende Komponenten
     
     menu = m;
@@ -156,6 +160,10 @@ public class Spieler extends JFrame {
   } // end of public Spieler
   
   // Anfang Methoden
+  public void close(){
+    setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+  }
+  
   public void zeigen(boolean b){
     setVisible(b);
   }
@@ -189,7 +197,11 @@ public class Spieler extends JFrame {
   }  
   
   public void wieter_ActionPerformed(ActionEvent evt) {
-    this.menu.welchsleSpieler();
+    if (this.menu.getGegenKi()) {
+      this.menu.welchsleKI();
+    } else {
+      this.menu.welchsleSpieler();
+    } // end of if-else
     this.strgSP.setSchuss();
     this.strgSP.setname(this.name.getText());
     this.strgSP.go();
@@ -212,13 +224,23 @@ public class Spieler extends JFrame {
   }
   
   public void zeig_ActionPerformed(ActionEvent evt) {         // macht alle Schiffe eines Spieler unkenntlich 
-    this.wieter.setVisible(true);
-    this.zeig.setVisible(false);
-    this.strgSP.zeige(this.titel);
-    this.menu.welchsleSpieler();
-    this.strgSP.setSchuss();
-    this.strgSP.go();
-    this.lage.setVisible(false);
+    if (this.strgSP.schauAlleSchiffeGesetzt()) {
+      this.wieter.setVisible(true);
+      this.zeig.setVisible(false);
+      this.strgSP.zeige(this.titel);
+      if (this.menu.getGegenKi()) {
+        this.menu.welchsleKI();
+      } else {
+        this.menu.welchsleSpieler();
+      } // end of if-else
+      
+      this.strgSP.setSchuss();
+      this.strgSP.go();
+      this.lage.setVisible(false);
+    } else {
+      JOptionPane.showMessageDialog(null,"Es wurden noch nicht alle Schiffe gesetzt!","Error", JOptionPane.PLAIN_MESSAGE);
+    } // end of if-else
+    
   } // end of zeig_ActionPerformed
   
   public void lage_ActionPerformed(ActionEvent evt) {
@@ -232,28 +254,31 @@ public class Spieler extends JFrame {
   
   public void schiff5_ActionPerformed(ActionEvent evt) {
     this.strgSP.setGr(5);
+    this.visivilitySchiffe[0]=false;
     this.schiff5.setVisible(false);
   } // end of schiff5_ActionPerformed
   
   public void schiff4_ActionPerformed(ActionEvent evt) {
     this.strgSP.setGr(4);
+    this.visivilitySchiffe[1]=false;
     this.schiff4.setVisible(false);
   } // end of schiff4_ActionPerformed
   
   public void schiff3_ActionPerformed(ActionEvent evt) {
     this.strgSP.setGr(3);
+    this.visivilitySchiffe[2]=false;
     this.schiff3.setVisible(false);
   } // end of schiff3_ActionPerformed
   
   public void schiff21_ActionPerformed(ActionEvent evt) {
     this.strgSP.setGr(2);
-    this.visibilitySchiff21=false;
+    this.visivilitySchiffe[3]=false;
     this.schiff21.setVisible(false);
   } // end of schiff21_ActionPerformed
   
   public void schiff22_ActionPerformed(ActionEvent evt) {
     this.strgSP.setGr(2);
-    this.visibilitySchiff22=false; 
+    this.visivilitySchiffe[4]=false; 
     this.schiff22.setVisible(false);
   } // end of schiff22_ActionPerformed
   
@@ -267,29 +292,39 @@ public class Spieler extends JFrame {
   } // end of reset_ActionPerformed
   
   public void zeigSchiff5(){
+    this.visivilitySchiffe[0]=true;
     this.schiff5.setVisible(true);
   }
   public void zeigSchiff4(){
+    this.visivilitySchiffe[1]=true;
     this.schiff4.setVisible(true);
   }
   public void zeigSchiff3(){
+    this.visivilitySchiffe[2]=true;
     this.schiff3.setVisible(true);
   }
   public void zeigSchiff21(){
-    this.visibilitySchiff21=true;
+    this.visivilitySchiffe[3]=true;
     this.schiff21.setVisible(true);
   } 
   public void zeigSchiff22(){
-    this.visibilitySchiff22=true; 
+    this.visivilitySchiffe[4]=true; 
     this.schiff22.setVisible(true);
   }
   
   public boolean getSchiff21Visible(){
-    return this.visibilitySchiff21;
+    return this.visivilitySchiffe[3];
   }
   
   public boolean getSchiff22Visible(){
-    return this.visibilitySchiff22;
+    return this.visivilitySchiffe[4];
+  }
+  
+  public boolean alleSchiffeWeg(int i){
+    return this.visivilitySchiffe[i]; 
+  }
+  public int getLaengeVisibility(){
+    return this.visivilitySchiffe.length;
   }
   
   // Ende Methoden

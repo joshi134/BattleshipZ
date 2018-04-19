@@ -1,10 +1,10 @@
 [Files]
-File0=DatenSchiffeversenken.class
+File0=DatenSchiffeversenken.java
 File1=Schiffeversenken$1.class
 File2=Schiffeversenken$2.class
-File3=Schiffeversenken.class
-File4=Spieler.class
-File5=SteuerungSchiffeversenken.class
+File3=Schiffeversenken.java
+File4=Spieler.java
+File5=SteuerungSchiffeversenken.java
 
 [Box:  - DatenSchiffeversenken]
 X=89
@@ -67,6 +67,7 @@ FontSize=10
 FontName=MS Sans Serif
 
 [Diagram]
+comments=0
 OffsetX=0
 OffsetY=0
 Visibility=0
@@ -79,18 +80,22 @@ Fontsize=10
 ShowObjectDiagram=0
 
 [Connections]
-V0=Schiffeversenken#SteuerungSchiffeversenken#AssociationBidirectional####0#0#0
-V1=Schiffeversenken#Spieler#AssociationBidirectional####0#0#0
-V2=Schiffeversenken$1#Schiffeversenken#AssociationDirected####0#0#0
-V3=Schiffeversenken$2#Schiffeversenken#AssociationDirected####0#0#0
-V4=SteuerungSchiffeversenken#DatenSchiffeversenken#AssociationDirected####0#0#0
+V0=Schiffeversenken#SteuerungSchiffeversenken#AssociationDirected####0#0#0
+V1=Schiffeversenken#Spieler#AssociationDirected####0#0#0
+V2=Schiffeversenken#Schiffeversenken$1#AssociationDirected####0#0#0
+V3=Schiffeversenken$1#Schiffeversenken#AssociationDirected####0#0#0
+V4=Schiffeversenken#Schiffeversenken$2#AssociationDirected####0#0#0
+V5=Schiffeversenken$2#Schiffeversenken#AssociationDirected####0#0#0
+V6=Spieler#Schiffeversenken#AssociationDirected####0#0#0
+V7=SteuerungSchiffeversenken#Schiffeversenken#AssociationDirected####0#0#0
+V8=SteuerungSchiffeversenken#DatenSchiffeversenken#AssociationDirected####0#0#0
 
 [Interactive]
 I0=
 
 [Window]
-Left=225
-Top=225
-Width=1691
-Height=488
+Left=-8
+Top=-31
+Width=1936
+Height=780
 

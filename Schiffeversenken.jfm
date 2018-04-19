@@ -3,7 +3,7 @@ object schiffeversenken: TFGUIFormular
   Top = 145
   BorderIcons = [biSystemMenu, biMinimize]
   Caption = 'Schiffeversenken'
-  ClientHeight = 255
+  ClientHeight = 268
   ClientWidth = 233
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -224,5 +224,28 @@ object schiffeversenken: TFGUIFormular
     Border.MatteLeft = 0
     Border.MatteBottom = 0
     Border.MatteRight = 0
+  end
+  object author: TJLabel
+    Tag = 1
+    Left = 120
+    Top = 248
+    Width = 109
+    Height = 19
+    Hint = 'jLabel1'
+    Foreground = 3355443
+    Background = clBtnFace
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -12
+    Font.Name = 'Dialog'
+    Font.Style = [fsBold]
+    Text = 'by Joshua & Mario'
+    HorizontalAlignment = LEFT
+    VerticalAlignment = CENTER
+    HorizontalTextPosition = RIGHT
+    VerticalTextPosition = CENTER
+    IconTextGap = 4
+    DisplayedMnemonic = 0
+    DisplayedMnemonicIndex = 0
   end
 end

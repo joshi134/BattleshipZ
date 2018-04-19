@@ -29,7 +29,7 @@ public class DatenSchiffeversenken{
     return NameSp2;    
   }
   
-  public int getPL1(int i, int k){
+  public int getPL1(int i, int k){                          //i =x K=y
     return spielfeld1[i][k] ;
   } 
   

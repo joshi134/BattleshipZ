@@ -27,7 +27,7 @@ public class SteuerungSpieler{
     daten = da; 
   }
   
-  public void zeige(String name){                         // macht die eingesetzten schiffe unsichtbar 
+  public void zeige(String name){                         // macht die eingesetzetn schiffe unsichtbar 
     for (int k=1;k<this.daten.getLaenge() ;k++ ) {
       for (int i=1;i<this.daten.getLaenge() ;i++ ) {
         if (this.pl1(name)) {
